@@ -1,97 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=“en”>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecture Webpage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #eaeaea;
-        }
+<title>Architecture Webpage</title>
+<style>
+table,
+th,
+td {
+border: 1px solid black;
+border-collapse: collapse;
+}
 
-        .content {
-            width: 1100px;
-            margin: auto;
-            background-color: #ffffff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .imageContainer {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .imageContainer img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        th, td {
-            text-align: center;
-            padding: 10px;
-        }
-
-        td:first-child, td:last-child {
-            width: 200px;
-        }
-
-        td:nth-child(2) {
-            width: 600px;
-        }
-
-        img.table-img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #d1e7dd;
-        }
-    </style>
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+    }
+</style>
 </head>
+
 <body>
-
-<div class="content">
-    <h1>Welcome to the World of Architecture</h1>
-    
-    <div class="imageContainer">
-        <img src="https://via.placeholder.com/800x400" alt="Architectural Design">
-    </div>
-    
-    <table>
-        <tr>
-            <td><img class="table-img" src="https://via.placeholder.com/200x150" alt="Building 1"></td>
-            <td>This is a description of Building 1. It is known for its unique architectural design and structure.</td>
-            <td><img class="table-img" src="https://via.placeholder.com/200x150" alt="Building 2"></td>
-        </tr>
-        <tr>
-            <td><img class="table-img" src="https://via.placeholder.com/200x150" alt="Building 3"></td>
-            <td>This is a description of Building 3. Its innovative use of space and light makes it a masterpiece.</td>
-            <td><img class="table-img" src="https://via.placeholder.com/200x150" alt="Building 4"></td>
-        </tr>
-    </table>
-</div>
-
+<h1>Webpage Architecture</h1>
+<p>Create an HTML webpage about architecture. The webpage should have a width of 1100px and include a div with the class “imageContainer” that contains an image. Create a table with three columns: the first and last columns should contain images, and the middle column should contain text. The width of the first and last columns should be 200, and the width of the middle column should be 600. Enhance the visual appearance of the webpage by applying additional styling. Ensure that all required elements are included and appropriately styled.</p>
+<h2>General Structure</h2>
+<ol>
+<li>The entire content of the webpage should have a width of 1100px.</li>
+</ol>
+<h2>Preview :
+<img src=“https://storage.googleapis.com/acciojob-open-file-collections/5c751d10-50b1-4ef7-887a-ee69223c7c53_Screenshot 2023-08-16 at 12.56.13 AM.png”>
+<h2>Images</h2>
+<ol>
+<li>Include a div with class “imageContainer” that contains an image.</li>
+</ol>
+<h2>Table Structure</h2>
+<p>Create a table with the following specifications:</p>
+<table>
+<tr>
+<th>Row</th>
+<th>First Column (Width: 200)</th>
+<th>Middle Column (Width: 600)</th>
+<th>Last Column (Width: 200)</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Image</td>
+<td>Text Content</td>
+<td>Image</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Image</td>
+<td>Text Content</td>
+<td>Image</td>
+</tr>
+</table>
+<p>Note:</p>
+<ol>
+<li>Each row in the table must contain three columns.</li>
+<li>The first and last columns of each row should contain an image.</li>
+<li>The middle column of each row should contain text.</li>
+<li>The width attribute value for the first and last columns should be 200, and for the middle column, it should be 600.</li>
+</ol>
+<h2>Styling</h2>
+<p>Additional styling may be applied to enhance the visual appearance of the webpage. Please refer to the provided CSS file for styling details.</p>
+<p>Follow the above guidelines to create an HTML webpage that provides architectural information. Ensure that all required elements are included and appropriately styled.</p>
+<!–/// <reference types=“cypress” />
+// Welcome to Cypress!
+//
+// This spec file contains a variety of sample tests
+// for a todo list app that are designed to demonstrate
+// the power of writing tests in Cypress.
+//
+// To learn more about how Cypress works and
+// what makes it such an awesome testing tool,
+// please read our getting started guide:
+// https://on.cypress.io/introduction-to-cypress
+const baseUrl = “http://localhost:3000”;
+describe(“Testcase1 : check for div with class imageContainer”, () => {
+beforeEach(() => {
+cy.visit(baseUrl);
+})
+// test cases u have to change is these all ‘it’ below
+it(‘contains table 1’, () => {
+cy.visit(baseUrl + “/main.html”);
+cy.get(‘.imageContainer img’).should(‘be.visible’);
+});
+});
+describe(‘Check table columns’, () => {
+it(‘Has three columns’, () => {
+cy.visit(baseUrl + “/main.html”);
+cy.get(‘table’)
+.find(‘tr’)
+.then((rows) => {
+const firstRow = rows[0];
+const cells = firstRow.getElementsByTagName(‘td’);
+expect(cells).to.have.lengthOf(3);
+});
+});
+it(‘first and last columns have images’, () => {
+cy.visit(baseUrl + “/main.html”);
+cy.get(‘table tr td:first-child img’)
+.should(‘exist’);
+cy.get(‘table tr td:nth-child(2) img’)
+.should(‘not.exist’);
+cy.get(‘table tr td:last-child img’)
+.should(‘exist’);
+});
+});–>
 </body>
 </html>
